@@ -1,0 +1,7 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Module-extra")(type "KiCad")(uri "${ATOOMNETKICAD}/footprints/Module-extra.pretty")(options "")(descr ""))
+  (lib (name "RF_Module-fixed")(type "KiCad")(uri "${ATOOMNETKICAD}/footprints/RF_Module-fixed.pretty")(options "")(descr ""))
+  (lib (name "Capacitor-extra")(type "KiCad")(uri "${ATOOMNETKICAD}/footprints/Capacitor-extra.pretty")(options "")(descr ""))
+  (lib (name "Display_7Segment-extra")(type "KiCad")(uri "${ATOOMNETKICAD}/footprints/Display_7Segment-extra.pretty")(options "")(descr ""))
+)

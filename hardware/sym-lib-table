@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Display_Character-extra")(type "KiCad")(uri "${ATOOMNETKICAD}/symbols/Display_Character-extra.kicad_sym")(options "")(descr ""))
+  (lib (name "MCU_Module-extra")(type "KiCad")(uri "${ATOOMNETKICAD}/symbols/MCU_Module-extra.kicad_sym")(options "")(descr ""))
+)
