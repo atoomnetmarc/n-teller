@@ -1,7 +1,13 @@
-#include <AceSPI.h>     // HardSpiInterface
-#include <AceSegment.h> // Max7219Module
+/*
+
+Copyright 2025 Marc Ketel
+SPDX-License-Identifier: Apache-2.0
+
+*/
+
 #include <Arduino.h>
-#include <SPI.h> // SPIClass, SPI
+
+#include <MaxLedControl.h>
 
 #define ESP8266_DRD_USE_RTC       true
 #define DOUBLERESETDETECTOR_DEBUG true
@@ -10,48 +16,77 @@
 #include <ESP_DoubleResetDetector.h>
 DoubleResetDetector *drd;
 
-using ace_segment::kDigitRemapArray8Max7219;
-using ace_segment::Max7219Module;
-using ace_spi::HardSpiInterface;
-
-const uint8_t LATCH_PIN = SS;
-
-const uint8_t NUM_DIGITS = 4;
-
-using SpiInterface = HardSpiInterface<SPIClass>;
-SpiInterface spiInterface(SPI, LATCH_PIN);
-Max7219Module<SpiInterface, NUM_DIGITS> ledModule(
-    spiInterface, kDigitRemapArray8Max7219);
-
-const uint8_t NUM_PATTERNS = 10;
-const uint8_t PATTERNS[NUM_PATTERNS] = {
-    0b00111111, // 0
-    0b00000110, // 1
-    0b01011011, // 2
-    0b01001111, // 3
-    0b01100110, // 4
-    0b01101101, // 5
-    0b01111101, // 6
-    0b00000111, // 7
-    0b01111111, // 8
-    0b01101111, // 9
-};
+LedControl lc = LedControl(13, 14, 15);
 
 void setup() {
-    delay(1000);
+    lc.shutdown(0, false);
+    lc.setIntensity(0, 15);
+    lc.clearDisplay(0);
 
-    SPI.begin();
-    spiInterface.begin();
-    ledModule.begin();
+    for (uint8_t i = 0; i < 8; i++) {
+        lc.setDigit(0, i, 8, true);
+    }
 
-    ledModule.setPatternAt(0, PATTERNS[0]);
-    ledModule.setPatternAt(1, PATTERNS[1]);
-    ledModule.setPatternAt(2, PATTERNS[2]);
-    ledModule.setPatternAt(3, PATTERNS[3]);
-
-    ledModule.setBrightness(2);
-
-    ledModule.flush();
+    for (uint8_t i = 15; i > 1; i--) {
+        lc.setIntensity(0, i);
+        delay(250);
+    }
 }
 
-void loop() {}
+void displayN(int16_t n) {
+    if (n < 0) {
+        lc.setRow(0, 0, 0);
+        lc.setRow(0, 1, 0b00000001);
+        lc.setRow(0, 2, 0b00000001);
+        lc.setRow(0, 3, 0);
+        return;
+    }
+
+    if (n > 9999) {
+        lc.setRow(0, 0, 0);
+        lc.setRow(0, 1, 0b00110111); // H
+        lc.setRow(0, 2, 0b00110111); // H
+        lc.setRow(0, 3, 0);
+        return;
+    }
+
+    if (n > 999) {
+        lc.setChar(0, 0, n / 1000, false);
+    } else {
+        lc.setRow(0, 0, 0b00010101); // n
+    }
+
+    if (n > 99) {
+        lc.setChar(0, 1, (n % 1000) / 100, false);
+    } else {
+        lc.setRow(0, 1, 0b00001001); // =
+    }
+
+    if (n > 9) {
+        lc.setChar(0, 2, (n % 100) / 10, false);
+    } else {
+        lc.setRow(0, 2, 0);
+    }
+
+    lc.setChar(0, 3, n % 10, false);
+}
+
+void loop() {
+    static int16_t n = -200;
+
+    displayN(n);
+
+    if (++n == 10100) {
+        n = -200;
+    }
+
+    if (n > 999 && n < 9999) {
+        delay(1);
+    } else if (n < 0 || n > 99) {
+        delay(10);
+    } else if (n > 9) {
+        delay(100);
+    } else {
+        delay(1000);
+    }
+}
