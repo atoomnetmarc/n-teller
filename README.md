@@ -1,3 +1,5 @@
+![](n-teller.jpg)
+
 # n-teller
 
 n-teller is an IoT device that displays the number of [checked in participants and visitors](https://revspace.nl/N) at the hackerspace called [Revelation Space (or RevSpace)](https://revspace.nl) .
