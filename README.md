@@ -41,7 +41,9 @@ Print `n-teller-stand-w-usb-c-socket.stl`. This will fit the optional USB Type-C
 
 Compile and flash the firmware located in the [firmware directory](firmware/). You will need [PlatformIO](https://platformio.org/) for this. I recommend installing the [PlatformIO extension for VSCode](https://platformio.org/install/ide?install=vscode).
 
-Do not forget to copy `local_env-example.ini` to `local_env.ini`.
+# Configure WiFi
+
+Double press the reset button (somewhat slowly). The letters `AP` will appear on the display. Now connect to a WiFi network with a name like `nteller-bcddc2895fd2`. Then goto: http://192.168.4.1/ and configure your WiFi.
 
 # Display information
 
@@ -54,14 +56,13 @@ PCB was designed to fit this type (pinout and dimensions) of 0.36" 4-digit 7-seg
 
 These are confirmed working.
 
-- ?
+- 3461AB, blue
 
 ### Untested
 
 These should fit, but are not tested.
 
 - LFD036AAG-101, green
-- 3461AB, blue
 - 3461AG, green
 - 3461AGG, jade green
 - 3461AS, red
