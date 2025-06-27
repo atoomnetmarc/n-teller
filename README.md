@@ -52,16 +52,16 @@ Double press the reset button (somewhat slowly). The letters `AP` will appear on
 PCB was designed to fit this type (pinout and dimensions) of 0.36" 4-digit 7-segment common cathode LED display:
 ![](3461A%20common%20cathode%200.36%20inch%204-digit%207-segment%20display%20drawing.png)
 
-## Model types
+## Model numbers and color options
 
-| Model                | Tested |
-| -------------------- | ------ |
-| LFD036AAG-101, green |        |
-| 3461AB, blue         | ✓      |
-| 3461AG, green        |        |
-| 3461AGG, jade green  |        |
-| 3461AS, red          |        |
-| 3461AW, white        |        |
-| 3461AY, yellow       |        |
+| Model         | Color      | Tested             |
+| ------------- | ---------- | ------------------ |
+| LFD036AAG-101 | green      |
+| 3461AB        | blue       | :heavy_check_mark: |
+| 3461AG        | green      |
+| 3461AGG       | jade green |
+| 3461AS        | red        |
+| 3461AW        | white      |
+| 3461AY        | yellow     |
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
