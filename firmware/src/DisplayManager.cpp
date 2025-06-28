@@ -19,7 +19,7 @@ void DisplayManager::initialize() {
     }
 }
 
-void DisplayManager::displayNumber(int16_t n) {
+void DisplayManager::displayNumber(int16_t n, bool open) {
     if (n < 0) {
         showPattern(0, 0);
         showPattern(1, MINUS_SIGN);
@@ -54,7 +54,7 @@ void DisplayManager::displayNumber(int16_t n) {
         showPattern(2, 0);
     }
 
-    lc.setChar(0, 3, n % 10, false);
+    lc.setChar(0, 3, n % 10, (open == false));
 }
 
 void DisplayManager::showPattern(uint8_t digit, uint8_t pattern) {
@@ -103,6 +103,9 @@ void DisplayManager::showText(const char *text) {
                 break;
             case 'v':
                 showPattern(i, CHAR_V);
+                break;
+            case '_':
+                showPattern(i, UNDERSCORE);
                 break;
             default:
                 showPattern(i, 0);

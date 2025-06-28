@@ -14,7 +14,7 @@ class DisplayManager {
 public:
     DisplayManager(uint8_t dataPin, uint8_t clkPin, uint8_t csPin);
     void initialize();
-    void displayNumber(int16_t n);
+    void displayNumber(int16_t n, bool open = true);
     void showPattern(uint8_t digit, uint8_t pattern);
     void showText(const char *text);
 
@@ -35,6 +35,7 @@ private:
     static const uint8_t CHAR_T = 0b00001111;
     static const uint8_t CHAR_V = 0b00011100;
     static const uint8_t MINUS_SIGN = 0b00000001;
+    static const uint8_t UNDERSCORE = 0b00001000;
 };
 
 #endif

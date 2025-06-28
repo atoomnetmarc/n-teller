@@ -108,11 +108,7 @@ void onMqttMessage(char *topic, char *payload, AsyncMqttClientMessageProperties 
         state = (payloadString == "open");
     }
 
-    if (state == 0) {
-        display.displayNumber(-1); // Closed
-    } else {
-        display.displayNumber(checkedin);
-    }
+    display.displayNumber(checkedin, state);
 }
 
 void setup() {
@@ -139,7 +135,7 @@ void setup() {
 
     if (drd->detectDoubleReset()) {
         Serial.println("Double reset detected. Starting wifimanager.");
-        display.showText(" AP ");
+        display.showText("_AP_");
 
         AsyncWiFiManager wifiManager(&server, &dns);
         wifiManager.setTimeout(60);
