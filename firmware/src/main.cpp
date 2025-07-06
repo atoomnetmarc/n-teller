@@ -138,7 +138,7 @@ void setup() {
         display.showText("_AP_");
 
         AsyncWiFiManager wifiManager(&server, &dns);
-        wifiManager.setTimeout(60);
+        wifiManager.setTimeout(300);
         if (!wifiManager.startConfigPortal(name.c_str())) {
             Serial.println("Failed to connect and hit timeout.");
             ESP.restart();
