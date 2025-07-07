@@ -105,16 +105,16 @@ const uint8_t DisplayManager::patterns[96] = {
     PATTERN_UNDEFINED, // @
     0b01110111,        // A
     PATTERN_UNDEFINED, // B
-    PATTERN_UNDEFINED, // C
+    0b01001110,        // C
     PATTERN_UNDEFINED, // D
-    PATTERN_UNDEFINED, // E
+    0b01001111,        // E
     0b01000111,        // F
     PATTERN_UNDEFINED, // G
     0b00110111,        // H
     0b00010000,        // I
     PATTERN_UNDEFINED, // J
     PATTERN_UNDEFINED, // K
-    PATTERN_UNDEFINED, // L
+    0b00001110,        // L
     0b01110110,        // N
     PATTERN_UNDEFINED, // M
     PATTERN_UNDEFINED, // O
@@ -143,13 +143,13 @@ const uint8_t DisplayManager::patterns[96] = {
     PATTERN_UNDEFINED, // f
     PATTERN_UNDEFINED, // g
     PATTERN_UNDEFINED, // h
-    PATTERN_UNDEFINED, // i
+    0b000c0000,        // i
     PATTERN_UNDEFINED, // j
     PATTERN_UNDEFINED, // k
     PATTERN_UNDEFINED, // l
     PATTERN_UNDEFINED, // m
     0b00010101,        // n
-    PATTERN_UNDEFINED, // o
+    0b00011101,        // o
     PATTERN_UNDEFINED, // p
     PATTERN_UNDEFINED, // q
     PATTERN_UNDEFINED, // r
