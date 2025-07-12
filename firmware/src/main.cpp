@@ -16,6 +16,9 @@ SPDX-License-Identifier: Apache-2.0
 #include <ESPAsyncWebServer.h>
 #include <ESPAsyncWiFiManager.h>
 
+#include <NTPClient.h>
+
+
 #define ESP8266_DRD_USE_RTC       true
 #define DOUBLERESETDETECTOR_DEBUG true
 #define DRD_TIMEOUT               2
@@ -36,6 +39,16 @@ Ticker mqttReconnectTimer;
 
 WiFiEventHandler wifiConnectHandler;
 WiFiEventHandler wifiDisconnectHandler;
+
+WiFiUDP ntpUDP;
+
+// By default 'pool.ntp.org' is used with 60 seconds update interval and
+// no offset
+// Here we specify to use pool.ntp.org, but also set the time offset
+// as one hour ahead and set to check and update each hour
+//NTPClient timeClient(ntpUDP, "pool.ntp.org", 3600, 3600);
+NTPClient timeClient(ntpUDP);
+
 
 void connectToMqtt() {
     Serial.println("Connecting to MQTT server");
@@ -170,10 +183,27 @@ void setup() {
         request->send(200, "text/plain", name);
     });
 
+    timeClient.begin();
+
+    timeClient.update();
+
+    timeClient.setUpdateInterval(7200);
+
+    unsigned long epochTime;
+    epochTime = timeClient.getEpochTime();
+    Serial.println(timeClient.getFormattedTime());
+    Serial.printf("epochTime = %lu\n", epochTime);
+    
     Serial.println("setup() done.");
+
 }
 
 void loop() {
     MDNS.update();
+    // Get time from NTPclient
+    timeClient.update();
+
+    Serial.println(timeClient.getFormattedTime());
+    //Serial.println(rtc.getDateTime());
     drd->loop();
 }
