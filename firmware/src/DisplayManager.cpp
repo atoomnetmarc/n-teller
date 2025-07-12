@@ -20,6 +20,8 @@ void DisplayManager::initialize() {
 }
 
 void DisplayManager::displayNumber(int16_t n, bool open) {
+    this->n = n;
+
     if (n < 0) {
         DisplayManager::showText(" -- ");
         return;
@@ -49,6 +51,64 @@ void DisplayManager::displayNumber(int16_t n, bool open) {
     }
 
     lc.setChar(0, 3, n % 10, (open == false));
+}
+
+void DisplayManager::displayTime(int16_t hours, int16_t minutes) {
+    this->hours = hours;
+    this->minutes = minutes;
+    lc.setChar(0, 0, hours / 10, false);
+    lc.setChar(0, 1, hours % 10, true);
+    lc.setChar(0, 2, minutes / 10, false);
+    lc.setChar(0, 3, minutes % 10, false);
+}
+
+void DisplayManager::toggleDisplay(DisplayManager::displayMode mode) {
+    switch (mode) {
+        case nteller:
+            int16_t n;
+            n = this->n;
+               if (n < 0) {
+                DisplayManager::showText(" -- ");
+                return;
+            }
+
+            if (n > 9999) {
+                DisplayManager::showText(" HH ");
+                return;
+            }
+
+            if (n > 999) {
+                lc.setChar(0, 0, n / 1000, false);
+            } else {
+                showPattern(0, DisplayManager::getPattern('n'));
+            }
+
+            if (n > 99) {
+                lc.setChar(0, 1, (n % 1000) / 100, false);
+            } else {
+                showPattern(1, DisplayManager::getPattern('='));
+            }
+
+            if (n > 9) {
+                lc.setChar(0, 2, (n % 100) / 10, false);
+            } else {
+                showPattern(2, 0);
+                
+            }
+
+            lc.setChar(0, 3, n % 10, false);
+            break;
+
+        case clock:
+            lc.setChar(0, 0, this->hours / 10, false);
+            lc.setChar(0, 1, this->hours % 10, true);
+            lc.setChar(0, 2, this->minutes / 10, false);
+            lc.setChar(0, 3, this->minutes % 10, false);
+            break;
+        default:
+            showText(" HH ");
+            break;
+    }
 }
 
 void DisplayManager::showPattern(uint8_t digit, uint8_t pattern) {
