@@ -60,6 +60,7 @@ PCB was designed to fit this type (pinout and dimensions) of 0.36" 4-digit 7-seg
 | 3461AB        | blue       | :heavy_check_mark: |
 | 3461AG        | green      |
 | 3461AGG       | jade green |
+| 3461AO        | orange     |
 | 3461AS        | red        |
 | 3461AW        | white      |
 | 3461AY        | yellow     |
