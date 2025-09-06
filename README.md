@@ -8,7 +8,7 @@ It connects to the [RevSpace MQTT server](https://revspace.nl/MQTT) via WiFi usi
 
 The MQTT server publishes to [a few topics of interest](https://revspace.nl/MQTT#Topics) that are subscribed:
 
-- revspace/[doorduino](https://revspace.nl/Doorduino3)/checked-in: the is the current total checked people.
+- revspace/[doorduino](https://revspace.nl/Doorduino3)/checked-in: this is the current total checked people.
 - revspace/[state](https://revspace.nl/Spacestatus): the current state (open or closed) of the hackerspace.
 
 # Schematic
@@ -35,7 +35,7 @@ You will also need:
 
 In the [3d](3d/) directory you can find a stand for the pcb.
 
-Print `n-teller-stand-w-usb-c-socket.stl`. This will fit the optional USB Type-C Female Chassis Connector mentioned in the BOM. Or print `n-teller-stand.stl` and role your own connection to 5V power supply.
+Print `n-teller-stand-w-usb-c-socket.stl`. This will fit the optional USB Type-C Female Chassis Connector mentioned in the BOM. Or print `n-teller-stand.stl` and roll your own connection to 5V power supply.
 
 ![](pcb-front-render-3d-printed-stand.png)
 
@@ -45,7 +45,7 @@ Compile and flash the firmware located in the [firmware directory](firmware/). Y
 
 # Configure WiFi
 
-Double press the reset button (somewhat slowly). The letters `AP` will appear on the display. Now connect to a WiFi network with a name like `nteller-bcddc2895fd2`. Then goto: http://192.168.4.1/ and configure your WiFi.
+Double press the reset button (somewhat slowly). The letters `AP` will appear on the display. Now connect to a WiFi network with a name like `nteller-bcddc2895fd2`. Then go to: http://192.168.4.1/ and configure your WiFi.
 
 # Display information
 
