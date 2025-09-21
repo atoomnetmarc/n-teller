@@ -17,7 +17,7 @@ The MQTT server publishes to [a few topics of interest](https://revspace.nl/MQTT
 
 # BOM
 
-See interactive BOM: [hardware/bom/](hardware/bom/)
+See interactive BOM: [hardware/bom/](https://html-preview.github.io/?url=https://github.com/atoomnetmarc/n-teller/blob/main/hardware/bom/ibom.html)
 
 You will also need:
 
